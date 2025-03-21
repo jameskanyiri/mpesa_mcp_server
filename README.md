@@ -1,68 +1,103 @@
-# M-PESA MCP Server
+# Mpesa Daraja MCP Server
 
-A Python server implementation for M-PESA payment integration using MCP (M-PESA Connect Protocol).
+A Python-based server that implements the Mpesa Daraja API functionality using FastMCP. This server provides a simple interface to interact with Safaricom's Mpesa Daraja API, starting with access token generation.
 
 ## Features
 
-- STK Push functionality for mobile payment initiation
-- Environment-based configuration
-- Secure token management
-- Error handling and logging
+- OAuth token generation for Mpesa Daraja API
+- Secure credential management using environment variables
+- Comprehensive error handling and logging
+- FastMCP-based server implementation
 
 ## Prerequisites
 
-- Python 3.x
-- M-PESA Daraja API credentials
-- MCP (M-PESA Connect Protocol) setup
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-MPESA_CONSUMER_KEY=your_consumer_key
-MPESA_CONSUMER_SECRET=your_consumer_secret
-PASSKEY=your_passkey
-BUSINESS_SHORTCODE=your_shortcode
-CALLBACK_URL=your_callback_url
-BASE_URL=https://sandbox.safaricom.co.ke
-PHONE_NUMBER=your_phone_number
-ACCOUNT_REFERENCE=your_account_reference
-```
+- Python 3.7 or higher
+- Mpesa Daraja API credentials (Consumer Key and Secret)
+- pip (Python package installer)
 
 ## Installation
 
-1. Clone the repository
-2. Create and activate a virtual environment
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/mpesa_mcp_server.git
+cd mpesa_mcp_server
+```
+
+2. Create and activate a virtual environment (recommended):
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+```
+
 3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Create a `.env` file in the project root with your Mpesa Daraja credentials:
+
+```env
+MPESA_CONSUMER_KEY="your_consumer_key"
+MPESA_CONSUMER_SECRET="your_consumer_secret"
+PASSKEY="your_passkey"
+BUSINESS_SHORTCODE="your_business_shortcode"
+CALLBACK_URL="your_callback_url"
+```
 
 ## Usage
 
-Run the server:
+1. Start the server:
 
 ```bash
-mcp dev main.py
+python server.py
 ```
 
-The server exposes an STK Push endpoint that accepts payment amount as a parameter.
+2. The server will start and listen for requests. You can interact with it using the FastMCP client.
 
-## Response Format
+## API Endpoints
 
-Successful STK Push response:
+### Generate Access Token
 
-```json
-{
-  "MerchantRequestID": "29115-34620561-1",
-  "CheckoutRequestID": "ws_CO_191220191020363925",
-  "ResponseCode": "0",
-  "ResponseDescription": "Success. Request accepted for processing",
-  "CustomerMessage": "Success. Request accepted for processing"
-}
+Generates an OAuth access token for authenticating Mpesa Daraja API requests.
+
+```python
+# Example response
+"Access token generated successfully: <your_access_token>"
 ```
+
+## Error Handling
+
+The server includes comprehensive error handling for:
+
+- Missing environment variables
+- API request failures
+- Invalid responses
+- Network issues
+
+All errors are logged with detailed messages for debugging.
+
+## Security
+
+- Credentials are stored in environment variables
+- `.env` file is excluded from version control
+- HTTPS is used for all API communications
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Safaricom Daraja API documentation
+- FastMCP team for the server framework
