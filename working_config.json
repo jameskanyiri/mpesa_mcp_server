@@ -1,0 +1,18 @@
+{
+    "mcpServers": {
+      "mpesa_mcp_server": {
+        "command": "/Users/jameskanyiri/.local/bin/uv",
+        "args": [
+          "--directory",
+          "/Users/jameskanyiri/PROJECTS/mpesa_mcp_server",
+          "run",
+          "server.py"
+        ],
+        "env": {
+          "PYTHONPATH": "/Users/jameskanyiri/PROJECTS/mpesa_mcp_server",
+          "PATH": "/Users/jameskanyiri/.local/bin:/usr/local/bin:/usr/bin:/bin"
+        }
+      }
+    }
+  }
+  
